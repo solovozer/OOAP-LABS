@@ -1,0 +1,21 @@
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\MainWindow.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\App.g.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people_MarkupCompile.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people_MarkupCompile.lref
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\bin\Debug\net8.0-windows\Kill 0.6 people.exe
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\bin\Debug\net8.0-windows\Kill 0.6 people.deps.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\bin\Debug\net8.0-windows\Kill 0.6 people.runtimeconfig.json
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\bin\Debug\net8.0-windows\Kill 0.6 people.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\bin\Debug\net8.0-windows\Kill 0.6 people.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\MainWindow.baml
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.g.resources
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.AssemblyInfoInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.AssemblyInfo.cs
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.csproj.CoreCompileInputs.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\refint\Kill 0.6 people.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.pdb
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.genruntimeconfig.cache
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\ref\Kill 0.6 people.dll
+C:\Users\Dell\OneDrive\Documents\TGU\Year 3\Key 2\OOAP 2\lab 1 -  Abstract Factory\Kill 0.6 people\obj\Debug\net8.0-windows\Kill 0.6 people.sourcelink.json
