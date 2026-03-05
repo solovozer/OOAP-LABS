@@ -13,7 +13,7 @@ namespace CarMaker.Parts
         private readonly int gearCount;
         private readonly string type;
         private readonly double maxTorque;
-        private readonly double[] gearRatios; // Real-world transmission setup
+        private readonly double[] gearRatios; 
 
         public string Model => model;
         public int GearCount => gearCount;

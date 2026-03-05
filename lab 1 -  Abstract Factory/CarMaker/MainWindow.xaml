@@ -3,13 +3,17 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:helix="http://helix-toolkit.org/wpf"
         xmlns:local="clr-namespace:CarMaker"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
         <StackPanel Margin="10" Height="200" Width="300">
-            <TextBlock Text="Car Maker 1.0" FontSize="24" FontWeight="Bold" Foreground="#2D2D2D" HorizontalAlignment="Center" Margin="0,0,0,10"/>
-            <TextBlock Text="Select factory:" ></TextBlock>
+            <TextBlock FontSize="18" Text="Factory selection:"></TextBlock>
             <ComboBox x:Name="BrandSelector" SelectedIndex="0">
                 <ComboBoxItem Content="Honda"/>
                 <ComboBoxItem Content="Ferrari"/>
@@ -23,5 +27,18 @@
                 </Hyperlink>
             </TextBlock>
         </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Margin="467,0,0,0">
+            <TextBlock x:Name="ModelNameLabel" 
+                   FontSize="15" 
+                   FontWeight="Bold" 
+                   Text="Select a Brand..."
+                   HorizontalAlignment="Center"
+                   Margin="0,90,0,0"/>
+            <helix:HelixViewport3D x:Name="CarViewport" Height="300" >
+                <helix:DefaultLights/>
+                <ModelVisual3D x:Name="CarModelVisual" />
+            </helix:HelixViewport3D>
+        </StackPanel>
+        <TextBlock Text="Car Maker 1.1" FontSize="36" FontWeight="Bold" Foreground="#2D2D2D" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="283,32,0,-32"/>
     </Grid>
 </Window>
