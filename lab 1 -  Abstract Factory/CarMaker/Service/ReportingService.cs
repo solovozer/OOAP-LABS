@@ -76,16 +76,20 @@ namespace CarMaker.Service
                     <span class='attribute-value'>{engine.Model}</span>
                 </div>
                 <div class='attribute'>
-                    <span class='attribute-label'>Horse Power:</span>
-                    <span class='attribute-value'>{engine.HorsePower} hp</span>
+                    <span class='attribute-label'>Torque:</span>
+                    <span class='attribute-value'>{engine.Torque} Nm</span>
                 </div>
                 <div class='attribute'>
-                    <span class='attribute-label'>Weight:</span>
-                    <span class='attribute-value'>{engine.Weight}</span>
+                    <span class='attribute-label'>Displacement:</span>
+                    <span class='attribute-value'>{engine.Displacement} L</span>
                 </div>
                 <div class='attribute'>
-                    <span class='attribute-label'>Efficiency:</span>
-                    <span class='attribute-value'>{engine.Efficiency}</span>
+                    <span class='attribute-label'>Fuel Type:</span>
+                    <span class='attribute-value'>{engine.Fuel}</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Thermal Efficiency:</span>
+                    <span class='attribute-value'>{engine.ThermalEfficiencyPercentage}%</span>
                 </div>";
 
             // Add specialized attributes based on engine type
@@ -114,7 +118,7 @@ namespace CarMaker.Service
                 baseDetails += $@"
                 <div class='attribute'>
                     <span class='attribute-label'>Emission Level:</span>
-                    <span class='attribute-value'>{ladaEngine.Emission}</span>
+                    <span class='attribute-value'>{ladaEngine.Emission} g/km</span>
                 </div>";
             }
 
@@ -143,6 +147,14 @@ namespace CarMaker.Service
                 <div class='attribute'>
                     <span class='attribute-label'>Tire Brand:</span>
                     <span class='attribute-value'>{wheel.TireBrand}</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Grip Coefficient:</span>
+                    <span class='attribute-value'>{wheel.GripCoefficient}</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Mass:</span>
+                    <span class='attribute-value'>{wheel.Mass} kg</span>
                 </div>";
 
             // Add specialized attributes based on wheel type
@@ -176,6 +188,8 @@ namespace CarMaker.Service
 
         private static string GetGearboxDetails(Gearbox gearbox)
         {
+            string gearRatiosString = string.Join(", ", gearbox.GearRatios.Select(r => r.ToString("F1")));
+            
             string baseDetails = $@"
                 <div class='attribute'>
                     <span class='attribute-label'>ID:</span>
@@ -196,18 +210,14 @@ namespace CarMaker.Service
                 <div class='attribute'>
                     <span class='attribute-label'>Max Torque:</span>
                     <span class='attribute-value'>{gearbox.MaxTorque} Nm</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Gear Ratios:</span>
+                    <span class='attribute-value'>{gearRatiosString}</span>
                 </div>";
 
             // Add specialized attributes based on gearbox type
-            if (gearbox is HondaGearbox hondaGearbox)
-            {
-                baseDetails += $@"
-                <div class='attribute'>
-                    <span class='attribute-label'>Has VTEC:</span>
-                    <span class='attribute-value'>{(hondaGearbox.HasVTEC ? "Yes" : "No")}</span>
-                </div>";
-            }
-            else if (gearbox is FerrariGearbox ferrariGearbox)
+            if (gearbox is FerrariGearbox ferrariGearbox)
             {
                 baseDetails += $@"
                 <div class='attribute'>

@@ -6,41 +6,38 @@ using System.Threading.Tasks;
 
 namespace CarMaker.Parts
 {
-    internal class Engine
+    internal class Engine : VehicleComponent
     {
-        private readonly string id;
         private readonly string model;
-        private readonly int horsePower;
-        private readonly string weight;
-        private readonly double efficiency;
+        private readonly double torque; // Newton-meters
+        private readonly double displacement; // Liters
+        private readonly FuelType fuel;
+        private readonly double thermalEfficiencyPercentage;
 
-        public string Id => id;
         public string Model => model;
-        public int HorsePower => horsePower;
-        public string Weight => weight;
-        public double Efficiency => efficiency;
+        public double Torque => torque;
+        public double Displacement => displacement;
+        public FuelType Fuel => fuel;
+        public double ThermalEfficiencyPercentage => thermalEfficiencyPercentage;
 
-        public Engine(string id, string model, int horsePower, string weight, double efficiency)
+        public Engine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage)
         {
-            this.id = id;
             this.model = model;
-            this.horsePower = horsePower;
-            this.weight = weight;
-            this.efficiency = efficiency;
+            this.torque = torque;
+            this.displacement = displacement;
+            this.fuel = fuel;
+            this.thermalEfficiencyPercentage = thermalEfficiencyPercentage;
         }
     }
 
     internal class HondaEngine : Engine
     {
-        private static int nextId = -1;
-
         private readonly bool hasVTEC;
 
-        public static int NextId => ++nextId;
         public bool HasVTEC => hasVTEC;
 
-        public HondaEngine(string model, int horsePower, string weight, double efficiency, bool hasVTEC)
-            : base("H-VTEC-" + NextId.ToString(), model, horsePower, weight, efficiency)
+        public HondaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, bool hasVTEC)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
         {
             this.hasVTEC = hasVTEC;
         }
@@ -48,17 +45,14 @@ namespace CarMaker.Parts
 
     internal class FerrariEngine : Engine
     {
-        private static int nextId = -1;
-
         private readonly int cylinders;
         private readonly bool hasTurbo;
 
-        public static int NextId => ++nextId;
         public int Cylinders => cylinders;
         public bool HasTurbo => hasTurbo;
 
-        public FerrariEngine(string model, int horsePower, string weight, double efficiency, int cylinders, bool hasTurbo)
-            : base("F-V8-" + NextId.ToString(), model, horsePower, weight, efficiency)
+        public FerrariEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, int cylinders, bool hasTurbo)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
         {
             this.cylinders = cylinders;
             this.hasTurbo = hasTurbo;
@@ -67,15 +61,12 @@ namespace CarMaker.Parts
 
     internal class LadaEngine : Engine
     {
-        private static int nextId = -1;
-
         private readonly double emission;
 
-        public static int NextId => ++nextId;
         public double Emission => emission;
 
-        public LadaEngine(string model, int horsePower, string weight, double efficiency, double emission)
-            : base("L-" + NextId.ToString(), model, horsePower, weight, efficiency)
+        public LadaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, double emission)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
         {
             this.emission = emission;
         }

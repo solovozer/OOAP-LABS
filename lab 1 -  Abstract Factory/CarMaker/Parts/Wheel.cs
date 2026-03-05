@@ -6,41 +6,41 @@ using System.Threading.Tasks;
 
 namespace CarMaker.Parts
 {
-    internal class Wheel
+    internal class Wheel : VehicleComponent
     {
-        private readonly string id;
         private readonly double diameter;
         private readonly double width;
         private readonly string material;
         private readonly string tireBrand;
+        private readonly double gripCoefficient; // 0.0 to 1.0
+        private readonly double mass; // Weight in kg
 
-        public string Id => id;
         public double Diameter => diameter;
         public double Width => width;
         public string Material => material;
         public string TireBrand => tireBrand;
+        public double GripCoefficient => gripCoefficient;
+        public double Mass => mass;
 
 
-        public Wheel(string id, double diameter, double width, string material, string tireBrand)
+        public Wheel(double diameter, double width, string material, string tireBrand, double gripCoefficient, double mass)
         {
-            this.id = id;
             this.diameter = diameter;
             this.width = width;
             this.material = material;
             this.tireBrand = tireBrand;
+            this.gripCoefficient = gripCoefficient;
+            this.mass = mass;
         }
     }
 
     internal class HondaWheel : Wheel
     {
-        private static int nextId = -1;
-
         private readonly string hubType;
 
-        public static int NextId = ++nextId;
         public string HubType => hubType;
-        public HondaWheel(double dia, double width, string mat, string brand, string hubType)
-            : base("HW-" + NextId.ToString(), dia, width, mat, brand)
+        public HondaWheel(double dia, double width, string mat, string brand, double gripCoefficient, double mass, string hubType)
+            : base(dia, width, mat, brand, gripCoefficient, mass)
         {
             this.hubType = hubType;
         }
@@ -48,15 +48,12 @@ namespace CarMaker.Parts
 
     internal class FerrariWheel : Wheel
     {
-        private static int nextId = -1;
-
         private readonly bool isCenterLock;
 
-        public static int NextId = ++nextId;
         public bool IsCenterLock => isCenterLock;
 
-        public FerrariWheel(double dia, double width, string mat, string brand, bool isCenterLock)
-            : base("FW-" + NextId.ToString(), dia, width, mat, brand)
+        public FerrariWheel(double dia, double width, string mat, string brand, double gripCoefficient, double mass, bool isCenterLock)
+            : base(dia, width, mat, brand, gripCoefficient, mass)
         {
             this.isCenterLock = isCenterLock;
         }
@@ -64,15 +61,12 @@ namespace CarMaker.Parts
 
     internal class LadaWheel : Wheel
     {
-        private static int nextId = -1;
-
         private readonly bool hasSteelFrame;
 
-        public static int NextId = ++nextId;
         public bool HasSteelFrame => hasSteelFrame;
 
-        public LadaWheel(double dia, double width, string mat, string brand, bool hasSteelFrame)
-            : base("LW-" + NextId.ToString(), dia, width, mat, brand)
+        public LadaWheel(double dia, double width, string mat, string brand, double gripCoefficient, double mass, bool hasSteelFrame)
+            : base(dia, width, mat, brand, gripCoefficient, mass)
         {
             this.hasSteelFrame = hasSteelFrame;
         }

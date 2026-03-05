@@ -13,29 +13,33 @@ namespace CarMaker.Factories
         Engine CreateEngine();
         Gearbox CreateGearbox();
         Wheel CreateWheel();
+        decimal GetConstructionCost();
     }
 
     internal class HondaFactory : ICarFactory
     {
         public string NameModel() => "Honda Accord";
-        public Engine CreateEngine() => new HondaEngine("K20", 150, "150kg", 0.38, true);
-        public Gearbox CreateGearbox() => new HondaGearbox("6-Speed", 6, "Manual", 400, true);
-        public Wheel CreateWheel() => new HondaWheel(17.0, 215.0, "Alloy", "Bridgestone", "5-Lug");
+        public Engine CreateEngine() => new HondaEngine("K20", 150.0, 2.0, FuelType.Petrol, 35.0, true);
+        public Gearbox CreateGearbox() => new HondaGearbox("6-Speed", 6, "Manual", 400.0, new double[] { 3.5, 2.1, 1.5, 1.1, 0.9, 0.8 }, true);
+        public Wheel CreateWheel() => new HondaWheel(17.0, 215.0, "Alloy", "Bridgestone", 0.85, 12.5, "5-Lug");
+        public decimal GetConstructionCost() => 25000.00m;
     }
 
     internal class FerrariFactory : ICarFactory
     {
         public string NameModel() => "Luce EV";
-        public Engine CreateEngine() => new FerrariEngine("F154", 600, "200kg", 0.28, 8, true);
-        public Gearbox CreateGearbox() => new FerrariGearbox("DCT", 7, "Auto", 750, 0.05);
-        public Wheel CreateWheel() => new FerrariWheel( 20.0, 305.0, "Carbon", "Pirelli", true);
+        public Engine CreateEngine() => new FerrariEngine("F154", 600.0, 6.5, FuelType.Electric, 42.0, 8, true);
+        public Gearbox CreateGearbox() => new FerrariGearbox("DCT", 7, "Auto", 750.0, new double[] { 4.2, 2.8, 2.1, 1.6, 1.3, 1.1, 0.9 }, 0.05);
+        public Wheel CreateWheel() => new FerrariWheel(20.0, 305.0, "Carbon", "Pirelli", 0.95, 15.2, true);
+        public decimal GetConstructionCost() => 350000.00m;
     }
 
     internal class LadaFactory : ICarFactory
     {
         public string NameModel() => "Lada Niva 4x4";
-        public Engine CreateEngine() => new LadaEngine("VAZ-2106", 120, "120kg", 0.22, 1400);
-        public Gearbox CreateGearbox() => new LadaGearbox("Heavy-Duty", 5, "Manual", 150, true);
-        public Wheel CreateWheel() => new LadaWheel(14.0, 175.0, "Reinforced Steel", "Kama", true);
+        public Engine CreateEngine() => new LadaEngine("VAZ-2106", 120.0, 1.6, FuelType.Petrol, 28.0, 1400.0);
+        public Gearbox CreateGearbox() => new LadaGearbox("Heavy-Duty", 5, "Manual", 150.0, new double[] { 3.8, 2.2, 1.4, 1.0, 0.8 });
+        public Wheel CreateWheel() => new LadaWheel(14.0, 175.0, "Reinforced Steel", "Kama", 0.75, 18.5, true);
+        public decimal GetConstructionCost() => 8500.00m;
     }
 }
