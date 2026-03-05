@@ -10,7 +10,7 @@ namespace CarMaker.Service
 {
     internal static class ReportingService
     {
-        public static void ExportCarReport(Car car)
+        public static string ExportCarReport(Car car)
         {
             string fileName = $"{car.Model.Replace(" ", "_")}_Report.html";
             string reportDate = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -62,6 +62,7 @@ namespace CarMaker.Service
 
             System.IO.File.WriteAllText(fileName, html);
             System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(fileName) { UseShellExecute = true });
+            return fileName;
         }
 
         private static string GetEngineDetails(Engine engine)
