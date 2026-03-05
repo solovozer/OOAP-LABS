@@ -13,20 +13,26 @@ namespace CarMaker.Parts
         private readonly double displacement; // Liters
         private readonly FuelType fuel;
         private readonly double thermalEfficiencyPercentage;
+        private readonly int cylinders;
+        private readonly bool hasTurbo;
 
         public string Model => model;
         public double Torque => torque;
         public double Displacement => displacement;
         public FuelType Fuel => fuel;
         public double ThermalEfficiencyPercentage => thermalEfficiencyPercentage;
+        public int Cylinders => cylinders;
+        public bool HasTurbo => hasTurbo;
 
-        public Engine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage)
+        public Engine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, int cylinders, bool hasTurbo)
         {
             this.model = model;
             this.torque = torque;
             this.displacement = displacement;
             this.fuel = fuel;
             this.thermalEfficiencyPercentage = thermalEfficiencyPercentage;
+            this.cylinders = cylinders;
+            this.hasTurbo = hasTurbo;
         }
     }
 
@@ -36,8 +42,8 @@ namespace CarMaker.Parts
 
         public bool HasVTEC => hasVTEC;
 
-        public HondaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, bool hasVTEC)
-            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
+        public HondaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, bool hasVTEC, int cylinders, bool hasTurbo)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage, cylinders, hasTurbo)
         {
             this.hasVTEC = hasVTEC;
         }
@@ -45,30 +51,18 @@ namespace CarMaker.Parts
 
     internal class FerrariEngine : Engine
     {
-        private readonly int cylinders;
-        private readonly bool hasTurbo;
-
-        public int Cylinders => cylinders;
-        public bool HasTurbo => hasTurbo;
-
         public FerrariEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, int cylinders, bool hasTurbo)
-            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage, cylinders, hasTurbo)
         {
-            this.cylinders = cylinders;
-            this.hasTurbo = hasTurbo;
+            
         }
     }
 
     internal class LadaEngine : Engine
     {
-        private readonly double emission;
-
-        public double Emission => emission;
-
-        public LadaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, double emission)
-            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage)
+        public LadaEngine(string model, double torque, double displacement, FuelType fuel, double thermalEfficiencyPercentage, int cylinders, bool hasTurbo)
+            : base(model, torque, displacement, fuel, thermalEfficiencyPercentage, cylinders, hasTurbo)
         {
-            this.emission = emission;
         }
     }
 }

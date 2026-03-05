@@ -1,6 +1,6 @@
 ﻿using CarMaker.Factories;
 using CarMaker.Service;
-using HelixToolkit.Wpf;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,22 +9,29 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace CarMaker
 {
 
-
     public partial class MainWindow : Window
     {
+        // Define a wrapper for the history table
+        public class CarRecord
+        {
+            public Car Car { get; set; }
+            public string ReportPath { get; set; }
+            public DateTime CreationTime { get; set; }
+        }
+
+        private ObservableCollection<CarRecord> _history = new ObservableCollection<CarRecord>();
+
         public MainWindow()
         {
             InitializeComponent();
+            HistoryGrid.ItemsSource = _history;
         }
-
-        private string _lastReportPath;
 
         private void MakeCar(object sender, RoutedEventArgs e)
         {
@@ -38,38 +45,42 @@ namespace CarMaker
             var assembler = new CarManufacturer(factory);
             Car car = assembler.AssembleCar();
 
-            StatusText.Text = $"Status: {car.Model} Assembled!";
-            ReportContainer.Visibility = Visibility.Visible;
-            ReportingService.ExportCarReport(car);
-        }
+            // Assuming ExportCarReport returns the path string. 
+            // If it doesn't, you'll need to update that service to return it.
+            string reportPath = ReportingService.ExportCarReport(car);
 
-        public void DisplayCar(ICarFactory factory)   //Show car model
-        {
-            var engine = factory.CreateEngine();
-            ModelNameLabel.Text = factory.NameModel();
-            string meshPath = $"Models/{factory.NameModel()}.obj";
-            Update3DModel(meshPath);
-        }
+            // 1. Update the Right Tab (Photo & Name)
+            ModelDisplayName.Text = car.Model;
+            try
+            {
+                // Load photo based on model name (e.g., "Honda.jpg" in your project folder)
+                CarPhoto.Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Images/{car.Model}.jpg"));
+            }
+            catch { /* Fallback if image missing */ }
 
-        private void StartSpinning()    //Spin car model
-        {
-            var rotation = new AxisAngleRotation3D(new Vector3D(0, 1, 0), 0);
-            CarModelVisual.Transform = new RotateTransform3D(rotation);
+            // 2. Update Table (Add to top, keep max 5)
+            _history.Insert(0, new CarRecord
+            {
+                Car = car,
+                ReportPath = reportPath,
+                CreationTime = DateTime.Now
+            });
 
-            CompositionTarget.Rendering += (s, e) => {
-                rotation.Angle += 1.0; 
-            };
+            if (_history.Count > 5) _history.RemoveAt(5);
         }
 
         private void OpenReport(object sender, RoutedEventArgs e)
         {
-            if (System.IO.File.Exists(_lastReportPath))
+            // Get the specific record associated with the clicked link
+            var hyperlink = (Hyperlink)sender;
+            var record = (CarRecord)hyperlink.DataContext;
+
+            if (record != null && System.IO.File.Exists(record.ReportPath))
             {
-                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(_lastReportPath)
+                System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(record.ReportPath)
                 {
                     UseShellExecute = true
                 });
             }
         }
     }
-}

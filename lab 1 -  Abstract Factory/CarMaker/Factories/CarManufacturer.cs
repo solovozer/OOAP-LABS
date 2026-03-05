@@ -21,12 +21,6 @@ namespace CarMaker.Factories
             Gearbox gearbox = _carFactory.CreateGearbox();
             Wheel wheel = _carFactory.CreateWheel();
             
-            // Validation: Ensure Engine.Torque <= Gearbox.MaxTorque to prevent mechanical failure
-            if (engine.Torque > gearbox.MaxTorque)
-            {
-                throw new InvalidOperationException($"Cannot assemble car: Engine torque ({engine.Torque} Nm) exceeds gearbox maximum torque capacity ({gearbox.MaxTorque} Nm). This would cause mechanical failure.");
-            }
-            
             return new Car(engine, gearbox, wheel, name);
         }
 

@@ -10,7 +10,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Honda_Accord.png" />
+    <None Remove="Assets\LadaNiva.jpg" />
+    <None Remove="Assets\LaFerrari.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="HelixToolkit.Wpf" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Honda_Accord.png" />
+    <Resource Include="Assets\LadaNiva.jpg" />
+    <Resource Include="Assets\LaFerrari.jpg" />
   </ItemGroup>
 
 </Project>

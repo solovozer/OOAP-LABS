@@ -12,8 +12,8 @@ namespace CarMaker.Parts
         private readonly double width;
         private readonly string material;
         private readonly string tireBrand;
-        private readonly double gripCoefficient; // 0.0 to 1.0
-        private readonly double mass; // Weight in kg
+        private readonly double gripCoefficient;
+        private readonly double mass; 
 
         public double Diameter => diameter;
         public double Width => width;

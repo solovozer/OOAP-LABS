@@ -90,9 +90,16 @@ namespace CarMaker.Service
                 <div class='attribute'>
                     <span class='attribute-label'>Thermal Efficiency:</span>
                     <span class='attribute-value'>{engine.ThermalEfficiencyPercentage}%</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Cylinders:</span>
+                    <span class='attribute-value'>{engine.Cylinders}</span>
+                </div>
+                <div class='attribute'>
+                    <span class='attribute-label'>Has Turbo:</span>
+                    <span class='attribute-value'>{(engine.HasTurbo ? "Yes" : "No")}</span>
                 </div>";
 
-            // Add specialized attributes based on engine type
             if (engine is HondaEngine hondaEngine)
             {
                 baseDetails += $@"
@@ -101,27 +108,6 @@ namespace CarMaker.Service
                     <span class='attribute-value'>{(hondaEngine.HasVTEC ? "Yes" : "No")}</span>
                 </div>";
             }
-            else if (engine is FerrariEngine ferrariEngine)
-            {
-                baseDetails += $@"
-                <div class='attribute'>
-                    <span class='attribute-label'>Cylinders:</span>
-                    <span class='attribute-value'>{ferrariEngine.Cylinders}</span>
-                </div>
-                <div class='attribute'>
-                    <span class='attribute-label'>Has Turbo:</span>
-                    <span class='attribute-value'>{(ferrariEngine.HasTurbo ? "Yes" : "No")}</span>
-                </div>";
-            }
-            else if (engine is LadaEngine ladaEngine)
-            {
-                baseDetails += $@"
-                <div class='attribute'>
-                    <span class='attribute-label'>Emission Level:</span>
-                    <span class='attribute-value'>{ladaEngine.Emission} g/km</span>
-                </div>";
-            }
-
             return baseDetails;
         }
 
@@ -157,7 +143,6 @@ namespace CarMaker.Service
                     <span class='attribute-value'>{wheel.Mass} kg</span>
                 </div>";
 
-            // Add specialized attributes based on wheel type
             if (wheel is HondaWheel hondaWheel)
             {
                 baseDetails += $@"
@@ -216,7 +201,6 @@ namespace CarMaker.Service
                     <span class='attribute-value'>{gearRatiosString}</span>
                 </div>";
 
-            // Add specialized attributes based on gearbox type
             if (gearbox is FerrariGearbox ferrariGearbox)
             {
                 baseDetails += $@"
