@@ -9,22 +9,15 @@ namespace CarMaker.Factories
 {
     internal class CarManufacturer
     {
-        ICarFactory _carFactory;
-        public CarManufacturer(ICarFactory carFactory)
+        public Car AssembleCar(ICarFactory carFactory)
         {
-            _carFactory = carFactory;
-        }
-        public Car AssembleCar()
-        {
-            string name = _carFactory.NameModel();
-            Engine engine = _carFactory.CreateEngine();
-            Gearbox gearbox = _carFactory.CreateGearbox();
-            Wheel wheel = _carFactory.CreateWheel();
+            string name = carFactory.NameModel();
+            Engine engine = carFactory.CreateEngine();
+            Gearbox gearbox = carFactory.CreateGearbox();
+            Wheel wheel = carFactory.CreateWheel();
             
             return new Car(engine, gearbox, wheel, name);
         }
-
-
     }
     internal class Car
     {

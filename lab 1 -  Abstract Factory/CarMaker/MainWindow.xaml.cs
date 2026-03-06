@@ -12,13 +12,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace CarMaker
 {
+    using System.IO;
 
     public partial class MainWindow : Window
     {
         // Define a wrapper for the history table
-        public class CarRecord
+        internal class CarRecord
         {
             public Car Car { get; set; }
             public string ReportPath { get; set; }
@@ -42,36 +44,35 @@ namespace CarMaker
                 _ => new LadaFactory()
             };
 
-            var assembler = new CarManufacturer(factory);
-            Car car = assembler.AssembleCar();
-
-            // Assuming ExportCarReport returns the path string. 
-            // If it doesn't, you'll need to update that service to return it.
+            var assembler = new CarManufacturer();
+            Car car = assembler.AssembleCar(factory);
             string reportPath = ReportingService.ExportCarReport(car);
 
-            // 1. Update the Right Tab (Photo & Name)
+            //Display frontend and photo
             ModelDisplayName.Text = car.Model;
-            try
-            {
-                // Load photo based on model name (e.g., "Honda.jpg" in your project folder)
-                CarPhoto.Source = new BitmapImage(new Uri($"pack://siteoforigin:,,,/Images/{car.Model}.jpg"));
-            }
-            catch { /* Fallback if image missing */ }
 
-            // 2. Update Table (Add to top, keep max 5)
+            string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            string imagePath = Path.Combine(baseDirectory, "..", "..", "..", "Images", $"{car.Model}.jpg");
+            imagePath = Path.GetFullPath(imagePath);
+            if (File.Exists(imagePath))
+            {
+                CarPhoto.Source = new BitmapImage(new Uri(imagePath));
+            }
+           
+
+            //update history table
             _history.Insert(0, new CarRecord
             {
                 Car = car,
                 ReportPath = reportPath,
                 CreationTime = DateTime.Now
             });
-
             if (_history.Count > 5) _history.RemoveAt(5);
         }
 
+        //Open html report
         private void OpenReport(object sender, RoutedEventArgs e)
         {
-            // Get the specific record associated with the clicked link
             var hyperlink = (Hyperlink)sender;
             var record = (CarRecord)hyperlink.DataContext;
 
@@ -84,3 +85,4 @@ namespace CarMaker
             }
         }
     }
+}
